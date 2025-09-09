@@ -52,7 +52,7 @@ function pokazAtrakcje() {
   atrakcje.forEach((a, i) => {
     const div = document.createElement('div');
     div.className = 'attraction-item';
-    div.innerHTML = `<strong>${i + 1}. Miejscowość:</strong> ${a.miejscowosc}<br>
+    div.innerHTML = `<strong>${i + 1}. Miejscowość / Region:</strong> ${a.miejscowosc}<br>
                      <strong>Województwo:</strong> ${a.wojewodztwo}<br>
                      <strong>Rodzaj:</strong> ${a.rodzaje.join(', ')}<br>
                      <strong>Opis:</strong> ${a.opis}`;
@@ -68,6 +68,7 @@ function wyczyscFormularz() {
   rozrywka.checked = false;
   opis.value = '';
 }
+
 
 
 
