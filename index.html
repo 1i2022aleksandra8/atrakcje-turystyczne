@@ -2,10 +2,9 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dodaj atrakcję turystyczną</title>
+  <title>Atrakcje turystyczne</title>
   <style>
-    body { background-color: #9577e7; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+    body { background-color: #9577e7; font-family: Arial; text-align: center; margin: 0; padding: 20px; }
     .form-wrapper { background-color: white; padding: 20px; border-radius: 10px; display: inline-block; }
     .attraction-list { margin-top: 20px; }
     .attraction-item { background-color: #f0f0f0; margin: 10px 0; padding: 10px; border-radius: 5px; }
@@ -18,13 +17,25 @@
   <div class="form-wrapper">
     <h1>Dodaj atrakcję turystyczną</h1>
 
-    <label for="region">Wybierz województwo:</label>
-    <select id="region">
+    <label>Województwo:</label>
+    <select id="wojewodztwo">
       <option value="">-- Wybierz --</option>
-      <option value="Śląskie">Śląskie</option>
-      <option value="Małopolskie">Małopolskie</option>
-      <option value="Pomorskie">Pomorskie</option>
-      <option value="Mazowieckie">Mazowieckie</option>
+      <option>Dolnośląskie</option>
+      <option>Kujawsko-pomorskie</option>
+      <option>Lubelskie</option>
+      <option>Lubuskie</option>
+      <option>Łódzkie</option>
+      <option>Małopolskie</option>
+      <option>Mazowieckie</option>
+      <option>Opolskie</option>
+      <option>Podkarpackie</option>
+      <option>Podlaskie</option>
+      <option>Pomorskie</option>
+      <option>Śląskie</option>
+      <option>Świętokrzyskie</option>
+      <option>Warmińsko-mazurskie</option>
+      <option>Wielkopolskie</option>
+      <option>Zachodniopomorskie</option>
     </select>
 
     <label>Rodzaj atrakcji:</label>
@@ -32,70 +43,68 @@
     <input type="checkbox" id="historyczna"> Historyczna<br>
     <input type="checkbox" id="rozrywka"> Rozrywka<br>
 
-    <label for="description">Opis atrakcji:</label>
-    <textarea id="description" rows="4" cols="40" placeholder="Wpisz opis atrakcji..."></textarea>
+    <label>Opis atrakcji:</label>
+    <textarea id="opis" rows="4" cols="40" placeholder="Wpisz opis..."></textarea>
 
-    <button id="addAttraction">Dodaj atrakcję</button>
+    <button id="dodaj">Dodaj atrakcję</button>
 
-    <div class="attraction-list" id="attractionList"></div>
+    <div id="lista" class="attraction-list"></div>
   </div>
 
   <script>
-    const regionSelect = document.querySelector('#region');
-    const turystyczna = document.querySelector('#turystyczna');
-    const historyczna = document.querySelector('#historyczna');
-    const rozrywka = document.querySelector('#rozrywka');
-    const description = document.querySelector('#description');
-    const addBtn = document.querySelector('#addAttraction');
-    const attractionList = document.querySelector('#attractionList');
+    const woj = document.querySelector('#wojewodztwo');
+    const tur = document.querySelector('#turystyczna');
+    const hist = document.querySelector('#historyczna');
+    const roz = document.querySelector('#rozrywka');
+    const opis = document.querySelector('#opis');
+    const dodaj = document.querySelector('#dodaj');
+    const lista = document.querySelector('#lista');
 
-    const attractions = [];
+    const atrakcje = [];
 
-    addBtn.addEventListener('click', () => {
-      const region = regionSelect.value;
-      const desc = description.value.trim();
-      const types = [];
+    dodaj.addEventListener('click', () => {
+      const wybraneWoj = woj.value;
+      const tekstOpisu = opis.value.trim();
+      const typy = [];
 
-      if (turystyczna.checked) types.push('Turystyczna');
-      if (historyczna.checked) types.push('Historyczna');
-      if (rozrywka.checked) types.push('Rozrywka');
+      if (tur.checked) typy.push('Turystyczna');
+      if (hist.checked) typy.push('Historyczna');
+      if (roz.checked) typy.push('Rozrywka');
 
-      if (!region || !desc || types.length === 0) {
-        alert('Uzupełnij wszystkie pola i wybierz przynajmniej jeden rodzaj atrakcji.');
+      if (!wybraneWoj || !tekstOpisu || typy.length === 0) {
+        alert('Uzupełnij wszystko i wybierz typ atrakcji.');
         return;
       }
 
-      const newAttraction = {
-        region,
-        types,
-        description: desc
+      const atrakcja = {
+        wojewodztwo: wybraneWoj,
+        rodzaje: typy,
+        opis: tekstOpisu
       };
 
-      attractions.push(newAttraction);
-      displayAttractions();
-      clearForm();
+      atrakcje.push(atrakcja);
+      pokazAtrakcje();
+      wyczyscFormularz();
     });
 
-    function displayAttractions() {
-      attractionList.innerHTML = '';
-      attractions.forEach((attr, index) => {
+    function pokazAtrakcje() {
+      lista.innerHTML = '';
+      atrakcje.forEach((a, i) => {
         const div = document.createElement('div');
-        div.classList.add('attraction-item');
-        div.innerHTML = `
-          <strong>${index + 1}. Województwo:</strong> ${attr.region}<br>
-          <strong>Rodzaj:</strong> ${attr.types.join(', ')}<br>
-          <strong>Opis:</strong> ${attr.description}
-        `;
-        attractionList.appendChild(div);
+        div.className = 'attraction-item';
+        div.innerHTML = `<strong>${i + 1}. Województwo:</strong> ${a.wojewodztwo}<br>
+                         <strong>Rodzaj:</strong> ${a.rodzaje.join(', ')}<br>
+                         <strong>Opis:</strong> ${a.opis}`;
+        lista.appendChild(div);
       });
     }
 
-    function clearForm() {
-      regionSelect.value = '';
-      turystyczna.checked = false;
-      historyczna.checked = false;
-      rozrywka.checked = false;
-      description.value = '';
+    function wyczyscFormularz() {
+      woj.value = '';
+      tur.checked = false;
+      hist.checked = false;
+      roz.checked = false;
+      opis.value = '';
     }
   </script>
 </body>
