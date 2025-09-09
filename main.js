@@ -19,7 +19,12 @@
       if (hist.checked) typy.push('Historyczna');
       if (roz.checked) typy.push('Rozrywka');
 
-      if (!miejsce || !wybraneWoj || !tekstOpisu || typy.length === 0) {
+      if (!miejsce) {
+        alert('Wpisz miejscowość lub region.');
+        return;
+      }
+
+      if (!wybraneWoj || !tekstOpisu || typy.length === 0) {
         alert('Uzupełnij wszystkie pola i wybierz typ atrakcji.');
         return;
       }
@@ -57,3 +62,4 @@
       roz.checked = false;
       opis.value = '';
     }
+
