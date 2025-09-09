@@ -1,4 +1,4 @@
-    const miejscowosc = document.querySelector('#miejscowosc');
+const miejscowosc = document.querySelector('#miejscowosc');
 const wojewodztwo = document.querySelector('#wojewodztwo');
 const turystyczna = document.querySelector('#turystyczna');
 const historyczna = document.querySelector('#historyczna');
@@ -68,4 +68,6 @@ function wyczyscFormularz() {
   rozrywka.checked = false;
   opis.value = '';
 }
+
+
 
