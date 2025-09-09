@@ -1,3 +1,4 @@
+    const miejscowosc = document.querySelector('#miejscowosc');
     const woj = document.querySelector('#wojewodztwo');
     const tur = document.querySelector('#turystyczna');
     const hist = document.querySelector('#historyczna');
@@ -9,6 +10,7 @@
     const atrakcje = [];
 
     dodaj.addEventListener('click', () => {
+      const miejsce = miejscowosc.value.trim();
       const wybraneWoj = woj.value;
       const tekstOpisu = opis.value.trim();
       const typy = [];
@@ -17,12 +19,13 @@
       if (hist.checked) typy.push('Historyczna');
       if (roz.checked) typy.push('Rozrywka');
 
-      if (!wybraneWoj || !tekstOpisu || typy.length === 0) {
-        alert('Uzupełnij wszystko i wybierz typ atrakcji.');
+      if (!miejsce || !wybraneWoj || !tekstOpisu || typy.length === 0) {
+        alert('Uzupełnij wszystkie pola i wybierz typ atrakcji.');
         return;
       }
 
       const atrakcja = {
+        miejscowosc: miejsce,
         wojewodztwo: wybraneWoj,
         rodzaje: typy,
         opis: tekstOpisu
@@ -38,7 +41,8 @@
       atrakcje.forEach((a, i) => {
         const div = document.createElement('div');
         div.className = 'attraction-item';
-        div.innerHTML = `<strong>${i + 1}. Województwo:</strong> ${a.wojewodztwo}<br>
+        div.innerHTML = `<strong>${i + 1}. Miejscowość:</strong> ${a.miejscowosc}<br>
+                         <strong>Województwo:</strong> ${a.wojewodztwo}<br>
                          <strong>Rodzaj:</strong> ${a.rodzaje.join(', ')}<br>
                          <strong>Opis:</strong> ${a.opis}`;
         lista.appendChild(div);
@@ -46,6 +50,7 @@
     }
 
     function wyczyscFormularz() {
+      miejscowosc.value = '';
       woj.value = '';
       tur.checked = false;
       hist.checked = false;
