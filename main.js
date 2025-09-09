@@ -1,8 +1,9 @@
+    
     const miejscowosc = document.querySelector('#miejscowosc');
-    const woj = document.querySelector('#wojewodztwo');
-    const tur = document.querySelector('#turystyczna');
-    const hist = document.querySelector('#historyczna');
-    const roz = document.querySelector('#rozrywka');
+    const wojewodztwo = document.querySelector('#wojewodztwo');
+    const turystyczna = document.querySelector('#turystyczna');
+    const historyczna = document.querySelector('#historyczna');
+    const rozrywka = document.querySelector('#rozrywka');
     const opis = document.querySelector('#opis');
     const dodaj = document.querySelector('#dodaj');
     const lista = document.querySelector('#lista');
@@ -11,29 +12,29 @@
 
     dodaj.addEventListener('click', () => {
       const miejsce = miejscowosc.value.trim();
-      const wybraneWoj = woj.value;
-      const tekstOpisu = opis.value.trim();
+      const woj = wojewodztwo.value;
+      const opisTekst = opis.value.trim();
       const typy = [];
 
-      if (tur.checked) typy.push('Turystyczna');
-      if (hist.checked) typy.push('Historyczna');
-      if (roz.checked) typy.push('Rozrywka');
+      if (turystyczna.checked) typy.push('Turystyczna');
+      if (historyczna.checked) typy.push('Historyczna');
+      if (rozrywka.checked) typy.push('Rozrywka');
 
       if (!miejsce) {
         alert('Wpisz miejscowość lub region.');
         return;
       }
 
-      if (!wybraneWoj || !tekstOpisu || typy.length === 0) {
-        alert('Uzupełnij wszystkie pola i wybierz typ atrakcji.');
+      if (!woj || !opisTekst || typy.length === 0) {
+        alert('Uzupełnij wszystkie pola i wybierz przynajmniej jeden typ atrakcji.');
         return;
       }
 
       const atrakcja = {
         miejscowosc: miejsce,
-        wojewodztwo: wybraneWoj,
+        wojewodztwo: woj,
         rodzaje: typy,
-        opis: tekstOpisu
+        opis: opisTekst
       };
 
       atrakcje.push(atrakcja);
@@ -56,10 +57,11 @@
 
     function wyczyscFormularz() {
       miejscowosc.value = '';
-      woj.value = '';
-      tur.checked = false;
-      hist.checked = false;
-      roz.checked = false;
+      wojewodztwo.value = '';
+      turystyczna.checked = false;
+      historyczna.checked = false;
+      rozrywka.checked = false;
       opis.value = '';
     }
+
 
