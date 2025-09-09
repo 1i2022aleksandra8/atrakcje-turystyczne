@@ -1,7 +1,38 @@
-    body { background-color: #9577e7; font-family: Arial; text-align: center; margin: 0; padding: 20px; }
-    .form-wrapper { background-color: white; padding: 20px; border-radius: 10px; display: inline-block; }
-    .attraction-list { margin-top: 20px; }
-    .attraction-item { background-color: #f0f0f0; margin: 10px 0; padding: 10px; border-radius: 5px; }
-    label { display: block; margin-top: 10px; }
-    button { margin-top: 15px; padding: 8px 12px; background-color: #ac87c4; border: none; cursor: pointer; }
-    button:hover { background-color: #332544; color: white; }
+    body {
+        background-color: #A27035; 
+        font-family: Arial; 
+        text-align: center; 
+        margin: 0; 
+        padding: 20px; 
+    }
+    .form-wrapper { 
+        background-color: #B88B4A; 
+        padding: 20px; 
+        border-radius: 10px; 
+        display: inline-block; 
+    }
+    .attraction-list { 
+        margin-top: 20px; 
+    }
+    .attraction-item { 
+        background-color: #DDCA7D; 
+        margin: 10px 0; 
+        padding: 10px; 
+        border-radius: 5px; 
+    }
+    label { 
+        display: block; 
+        margin-top: 10px; 
+    }
+    button { 
+        margin-top: 15px; 
+        padding: 8px 12px; 
+        background-color: #DDCA7D; 
+        border: none; 
+        cursor: pointer; 
+    }
+    button:hover { 
+        background-color: #DDCA7D; 
+        color: white; 
+    }
+
